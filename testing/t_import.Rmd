@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### {header, noM, noU, noD, noAttr, distanceMatrices, matchMatrix,mate} = import (filename)
+### filename <- precomp_proof.dat
 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 
