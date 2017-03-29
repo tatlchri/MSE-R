@@ -16,6 +16,6 @@ library(foreach)
 
 #Import functions
 source("import.R")
-source("assignpayoffMatrix.R")
 source("matching.R")
 source("payoff.R")
+source("assignList.R")
