@@ -1,0 +1,71 @@
+---
+title: "Test matching.R function"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Test functions in matching.R file
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+```
+
+
+## Test generateAssignmentMatrix(payoffs,quotaU,quotaD)
+
+```{r }
+payoffMatrix <- matrix(c(910.41, 707.28, 706.35, 621.92, 726.38, 960.84, 
+    754.13, 764.83, 801.89, 701.89, 653.25, 719.04, 799.99, 774.68, 
+    835.48, 806.28, 686.7, 681.97, 604.14, 723.23, 886.22, 734.38, 
+    747.58, 770.07, 675.69, 642.93, 693.31, 784.32, 742.03, 
+    803.43,1271.07, 720.4, 684.3, 603.58, 728.8, 1176.88, 730.83, 
+    770.25, 862.68, 669.13, 646.01, 733.68, 776.64, 879.02, 
+    863.36,874.13, 657.26, 637.2, 565.54, 700.17, 905.53, 690.04, 
+    720.91, 753.48, 623.97, 615.22, 660.75, 744.59, 744.02, 
+    770.05,1031.32, 715.69, 691.15, 610.02, 749.09, 1033.23, 744.3,
+     779.32, 827.8, 677.75, 659.65, 723.39, 798.59, 824.87, 842.86),nrow=5,ncol=15,byrow=TRUE)
+
+generateAssignmentMatrix(payoffMatrix,3,1)
+```
+
+```{r }
+generateAssignmentMatrix(payoffMatrix,1,1)
+```
+
+```{r }
+generateAssignmentMatrix(payoffMatrix,3,2)
+```
+
+
+## Test CmatchMatrix(payoffMatrix,quotaU,quotaD)
+
+```{r }
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+#Import file
+filename<-"import/precomp_testdata.dat"
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+
+#Create payoffMatrix
+Cx<-Cx(noAttr)
+payoffMatrix<-CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+
+#Assign payoffMatrix numerical values (set x's)
+xval<-c(1, 2, 1.5, 2.3)
+payoffMatrix<-assignpayoffMatrix(payoffMatrix,xval)
+
+#Create matchMatrix
+CmatchMatrix(payoffMatrix,2,1)
+```
+
+```{r }
+#Create matchMatrix
+CmatchMatrix(payoffMatrix,2,2)
+```
