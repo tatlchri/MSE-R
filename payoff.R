@@ -1,9 +1,12 @@
 Cx<-function(n){
   #Cx(n) creates a list of n variables named x1,x2,...,xn.
-  
-  Cx<-paste("x",seq( from = 1, to = n, by = 1 ),sep="")
-  
-  return(Cx)
+  if (n==0){
+    return()
+  }else{
+    Cx<-paste("x",seq( from = 1, to = n, by = 1 ),sep="")
+    
+    return(Cx)
+  }
 }
 
 
@@ -29,6 +32,12 @@ CpayoffMatrix<-function(noM,noU,noD,Cx,distanceMatrices,noAttr){
   return(CpayoffMatrix)
 }
 
-
+assignpayoffMatrix<-function(payoffMatrix,xval){
+  #assignpayoffMatrix(payoffMatrix,xval) assigns payoffMatrix numerical values (set x's)
+  Cx<-paste("x",seq( from = 1, to = noAttr-1, by = 1 ),sep="")
+  x<-lapply(seq_along(xval), function(i) xval[i])
+  names(x)<-Cx
+  return(lapply(seq_along(payoffMatrix),function(i) lapply(seq_along(payoffMatrix[[i]]), function(j) lapply(seq_along(payoffMatrix[[i]][[j]]),function(k) eval(parse(text=payoffMatrix[[i]][[j]][[k]]),x)))))
+}
 
 
