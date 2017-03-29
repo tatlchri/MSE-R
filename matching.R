@@ -35,7 +35,7 @@ CmatchMatrix<-function(payoffMatrix,quotaU,quotaD){
   #matchMatrix[payoffMatrix,quotaU,quotaD] creates the matchMatrix by running generateAssignmentMatrix routine for all markets. For the moment quota's are fixed numbers the same accross all markets.
   #lapply(seq_along(x),function(i) lapply(seq_along(x[[i]]), function(j) lapply(seq_along(x[[i]][[j]]),function(k) eval(parse(text=x[[i]][[j]][[k]]),list(x1=3,x2=2)))))
   
-  return(lapply(seq_along(payoffMatrix), function(i) generateAssignmentMatrix(matrix(unlist(payoffMatrix[[i]]),nrow=length(payoffMatrix[[i]]),byrow=TRUE),1,1)))
+  return(lapply(seq_along(payoffMatrix), function(i) generateAssignmentMatrix(matrix(unlist(payoffMatrix[[i]]),nrow=length(payoffMatrix[[i]]),byrow=TRUE),quotaU,quotaD)))
 }
 
 Cmates<-function(matchMatrix){
