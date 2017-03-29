@@ -1,0 +1,69 @@
+---
+title: "Test import.R function
+"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### {header, noM, noU, noD, noAttr, distanceMatrices, matchMatrix,mate} = import (filename)
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+
+library(stargazer)
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+filename <- "import/precomp_proof.dat"
+
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+
+```
+
+
+## header 
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(header)
+```
+
+## noM 
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(noM)
+```
+
+## noU 
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(noU)
+```
+
+## noD 
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(noD)
+```
+
+## noAttr 
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(noAttr)
+```
+
+## distanceMatrices
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+distanceMatrices_temp<-distanceMatrices
+distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ colnames(y)<-c();y}))
+distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ rownames(y)<-c();y}))
+print(distanceMatrices_temp)
+```
+
+## matchMatrix
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(matchMatrix)
+```
+
+## mate
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+print(mate)
+```
