@@ -1,0 +1,71 @@
+---
+title: "Test payoff.R function"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Test functions in payoff.R file
+## filename <- temp.dat
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+filename <- "import/temp.dat"
+
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+```
+
+### DistanceMatrices
+```{r,echo=FALSE }
+distanceMatrices_temp<-distanceMatrices
+distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ colnames(y)<-c();y}))
+distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ rownames(y)<-c();y}))
+print(distanceMatrices_temp)
+```
+
+## Test function Cx(n)
+```{r }
+Cx(0)
+```
+
+```{r }
+Cx(1)
+```
+
+```{r }
+Cx(10)
+```
+
+## Test function payoffDM(Cx,distanceMatrices,noAttr,m,i,j)
+```{r }
+Cx<-Cx(noAttr)
+payoffDM(Cx,distanceMatrices,noAttr,1,1,1)
+```
+
+```{r }
+payoffDM(Cx,distanceMatrices,noAttr,2,1,2)
+```
+
+## Test function CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+
+```{r }
+CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+```
+
+## Test function assignpayoffMatrix(payoffMatrix,xval)
+```{r }
+payoffMatrix <- CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+xval<-c(1,2,2,1)
+assignpayoffMatrix(payoffMatrix,xval)
+```
+
+```{r }
+payoffMatrix <- CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+xval<-c(0,0,0,1)
+assignpayoffMatrix(payoffMatrix,xval)
+```
