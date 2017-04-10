@@ -1,0 +1,82 @@
+---
+title: "Test import.R function
+"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Cineqmembers<-function(mate)
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+
+library(stargazer)
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+
+```
+
+
+## Example 1
+```{r}
+matchMatrix<- list(list(c(1,1),c(0,0),c(0,0)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
+
+## Example 2
+```{r}
+matchMatrix<- list(list(c(1,1),c(1,0)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
+
+## Example 3
+```{r}
+matchMatrix<- list(list(c(1,0),c(0,1)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
+
+## Example 4
+```{r}
+matchMatrix<- list(list(c(0,1),c(1,0)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
+
+## Example 5
+```{r}
+matchMatrix<- list(list(c(1,1),c(1,1)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
+
+## Example 6
+```{r}
+matchMatrix<- list(list(c(1,1),c(0,1)),list(c(1,1,0),c(0,1,1),c(0,0,1)))
+mate<-Cmate(matchMatrix)
+print(mate)
+
+ineqmembers <- Cineqmembers(mate)
+print(ineqmembers)
+```
