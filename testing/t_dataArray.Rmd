@@ -1,0 +1,31 @@
+---
+title: "Test dataArray.R function"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Test functions in dataArray.R file
+
+
+```{r ,warning=FALSE,message=FALSE}
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+
+#Import file
+filename<-"import/precomp_testdata.dat"
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+
+#Create inequality members
+ineqmembers<-Cineqmembers(mate)
+#Create Data Array
+dataArray<-CdataArray(distanceMatrices,ineqmembers)
+print(dataArray)
+
+```
+
