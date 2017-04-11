@@ -5,6 +5,7 @@ if (!"dplyr" %in% installed.packages()) install.packages("dplyr")
 if (!"Ryacas" %in% installed.packages()) install.packages("Ryacas")
 if (!"doSNOW" %in% installed.packages()) install.packages("doSNOW")
 if (!"foreach" %in% installed.packages()) install.packages("foreach")
+if (!"DEoptim" %in% installed.packages()) install.packages("DEoptim")
 
 #Import installed packages
 library(Matrix)
@@ -13,6 +14,7 @@ library(dplyr)
 library(Ryacas)
 library(doSNOW)
 library(foreach)
+library(DEoptim)
 
 #Import functions
 source("import.R")
@@ -21,3 +23,4 @@ source("payoff.R")
 source("assignList.R")
 source("inequalities.R")
 source("dataArray.R")
+source("objective.R")
