@@ -1,0 +1,45 @@
+---
+title: "Test maximize.R function"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Test functions in maximize.R file
+
+```{r,warning=FALSE,message=FALSE }
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+#Import file
+filename<-"import/round1m1-1.xls.pre.dat"
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+
+
+#Create inequality members
+ineqmembers<-Cineqmembers(mate)
+
+#Create Data Array
+dataArray<-CdataArray(distanceMatrices,ineqmembers)
+
+#Objective function
+coefficient1<-1
+b<-c(5,3) #Define x1,x2,... values
+obj<-objective(b)
+
+#maximize function
+lower <- c(-10, -10)
+upper <- -lower
+par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=0.5,F=0.6,RandomSeed=0)
+x<-maximize(par)
+g(bestmem,bestval)%=%x
+print(bestmem)
+print(bestval)
+```
+
+
+
