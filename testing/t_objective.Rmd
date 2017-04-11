@@ -1,0 +1,50 @@
+---
+title: "Test objective.R function"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Test functions in objective.R file
+
+```{r,warning=FALSE,message=FALSE }
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+
+#Import file
+filename<-"import/precomp_testdata.dat"
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+
+#Create inequality members
+ineqmembers<-Cineqmembers(mate)
+
+#Create Data Array
+dataArray<-CdataArray(distanceMatrices,ineqmembers)
+
+#Objective function
+coefficient1<-1
+b<-c(1,2,3,4) #Define x1,x2,... values
+obj<-objective(b)
+print(obj)
+```
+
+
+```{r,warning=FALSE,message=FALSE }
+#Objective function
+coefficient1<--1
+b<-c(1,2,3,4) #Define x1,x2,... values
+obj<-objective(b)
+print(obj)
+```
+
+```{r,warning=FALSE,message=FALSE }
+#Objective function
+coefficient1<--1
+b<-c(1,1,1,1) #Define x1,x2,... values
+obj<-objective(b)
+print(obj)
+```
