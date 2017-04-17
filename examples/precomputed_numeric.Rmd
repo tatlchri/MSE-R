@@ -1,0 +1,87 @@
+---
+title: Numeric Example
+output: pdf_document
+---
+
+```{r setup, include=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
+knitr::opts_knit$set(root.dir = "C:/Users/Christina/Desktop/mse-r/MSE-R")
+```
+
+## init
+Set the library's directory first!
+
+```{r,warning=FALSE,message=FALSE}
+#Load Libraries and functions
+setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+source("mse.R")
+```
+
+## Import precomputed data
+Set the data's directory preferably in the variable 'filename'.
+```{r }
+filename<-"import/round1m1-1.xls.pre.dat"
+```
+Load the data in variables with meaningful names
+```{r }
+x<-import(filename)
+g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
+```
+
+## Routines (calculate payoff matrix, inequalities members, dataArray)
+```{r }
+#Create payoffMatrix
+Cx<-Cx(noAttr)
+payoffMatrix<-CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+
+#Assign payoffMatrix numerical values (set x's)
+xval<-c(1,2)
+payoffMatrix<-assignpayoffMatrix(payoffMatrix,xval)
+```
+
+```{r }
+#Create inequality members
+ineqmembers<-Cineqmembers(mate)
+```
+
+```{r }
+#Create Data Array
+dataArray<-CdataArray(distanceMatrices,ineqmembers)
+```
+
+## Maximization
+
+### Differential Evolution Method
+The default DifferentialEvolution parameters:
+
+\begin{table}[]
+\centering
+\begin{tabular}{lll}
+option name & default value   & \\ \hline
+lower,upper & -10,10          & two vectors specifying scalar real lower and upper bounds on each parameter to be optimized, so that the i-th element of lower and upper applies to the i-th parameter. The implementation searches between lower and upper for the global optimum (minimum) of fn.\\
+CR          & 0.5             & crossover probability from interval [0,1]\\
+trace       & FALSE           & Positive integer or logical value indicating whether printing of progress occurs at each iteration\\
+itermax     & 100             & the maximum iteration (population generation) allowed\\
+F           & 0.6             & differential weighting factor from interval [0,2]\\
+NP          & 50              & number of population members. Defaults to NA; if the user does not change the value of NP from NA or specifies a value less than 4 it is reset when DEoptim is called as 10*length(lower). For many problems it is best to set NP to be at least 10 times the length of the parameter vector.\\
+reltol      & 0.001           & relative convergence tolerance. The algorithm stops if it is unable to reduce the value by a factor of reltol * (abs(val) + reltol) after steptol steps\\
+RandomSeed  & 0               &  Random Seed to be used for result reproducibility 
+\end{tabular}
+\end{table}
+
+```{r }
+#Objective function
+coefficient1<-1
+b<-c(2,1) #Define x1,x2,... values
+obj<-objective(b)
+
+#maximize function
+lower <- c(-10, -10)
+upper <- -lower
+par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=0.5,F=0.6,RandomSeed=0)
+x<-maximize(par)
+g(bestmem,bestval)%=%x
+print(bestmem)
+print(bestval)
+```
+
+## Confidence Intervals
