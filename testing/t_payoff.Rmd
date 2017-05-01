@@ -33,12 +33,24 @@ print(distanceMatrices_temp)
 Cx(0)
 ```
 
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(Cx(0),NULL)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
 ```{r }
 Cx(1)
 ```
 
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(Cx(1),"x1")==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
 ```{r }
 Cx(10)
+```
+
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(Cx(10),c("x1","x2","x3","x4","x5","x6","x7","x8","x9","x10"))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## Test function payoffDM(Cx,distanceMatrices,noAttr,m,i,j)
@@ -47,14 +59,26 @@ Cx<-Cx(noAttr)
 payoffDM(Cx,distanceMatrices,noAttr,1,1,1)
 ```
 
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(as.character(payoffDM(Cx,distanceMatrices,noAttr,1,1,1)),"( ( ( ( (  + ( 11.216277056727 * 1 ) ) + ( 21.8747893566063 * x1 ) ) + ( 22.795905838145 * x2 ) ) + ( 17.9814625597076 * x3 ) ) + ( 5.6899020898701 * x4 ) )" )==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
 ```{r }
 payoffDM(Cx,distanceMatrices,noAttr,2,1,2)
+```
+
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(as.character(payoffDM(Cx,distanceMatrices,noAttr,2,1,2)),"( ( ( ( (  + ( 14.6105514800938 * 1 ) ) + ( 22.8231716640474 * x1 ) ) + ( 16.4586270777432 * x2 ) ) + ( 8.20894327799575 * x3 ) ) + ( 9.79892549752311 * x4 ) )" )==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## Test function CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
 
 ```{r }
 CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
+```
+
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(as.character(CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)),c("list(list(\"( ( ( ( (  + ( 11.216277056727 * 1 ) ) + ( 21.8747893566063 * x1 ) ) + ( 22.795905838145 * x2 ) ) + ( 17.9814625597076 * x3 ) ) + ( 5.6899020898701 * x4 ) )\", \"( ( ( ( (  + ( 8.59793304975342 * 1 ) ) + ( 16.0458255057169 * x1 ) ) + ( 10.6555839592819 * x2 ) ) + ( 18.3318879727136 * x3 ) ) + ( 23.5689562802085 * x4 ) )\"))"  ,"list(list(\"( ( ( ( (  + ( 17.4585472864501 * 1 ) ) + ( 10.215782009306 * x1 ) ) + ( 11.5448726677228 * x2 ) ) + ( 6.66567522130858 * x3 ) ) + ( 18.9412317783658 * x4 ) )\", \"( ( ( ( (  + ( 14.6105514800938 * 1 ) ) + ( 22.8231716640474 * x1 ) ) + ( 16.4586270777432 * x2 ) ) + ( 8.20894327799575 * x3 ) ) + ( 9.79892549752311 * x4 ) )\", \"( ( ( ( (  + ( 13.7736166700195 * 1 ) ) + ( 10.6968559173428 * x1 ) ) + ( 17.8750393186981 * x2 ) ) + ( 7.86989207952445 * x3 ) ) + ( 24.1320683139937 * x4 ) )\", \"( ( ( ( (  + ( 10.9786197557216 * 1 ) ) + ( 16.1790665209139 * x1 ) ) + ( 17.6258549408472 * x2 ) ) + ( 21.7017735256739 * x3 ) ) + ( 8.42778391085661 * x4 ) )\"))","list(list(\"( ( ( ( (  + ( 20.8423386783242 * 1 ) ) + ( 16.0996670787094 * x1 ) ) + ( 19.9388277631915 * x2 ) ) + ( 8.85818983658442 * x3 ) ) + ( 14.2774583577917 * x4 ) )\", \"( ( ( ( (  + ( 10.8460939685858 * 1 ) ) + ( 24.6421975914398 * x1 ) ) + ( 9.91145105353612 * x2 ) ) + ( 9.25836575277227 * x3 ) ) + ( 18.3708754630047 * x4 ) )\", \"( ( ( ( (  + ( 16.3456066900983 * 1 ) ) + ( 24.9592634391802 * x1 ) ) + ( 21.0896688118442 * x2 ) ) + ( 16.2283368043038 * x3 ) ) + ( 24.8329578995369 * x4 ) )\"))"  ))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## Test function assignpayoffMatrix(payoffMatrix,xval)
@@ -64,8 +88,16 @@ xval<-c(1,2,2,1)
 assignpayoffMatrix(payoffMatrix,xval)
 ```
 
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(assignpayoffMatrix(payoffMatrix,xval),list(list(list(120.3357,106.1877)),list(list(83.03666,96.56779,100.0924,114.2407)),list(list(108.8135,92.1988,140.7738))),tolerance=0.001)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
 ```{r }
 payoffMatrix <- CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
 xval<-c(0,0,0,1)
 assignpayoffMatrix(payoffMatrix,xval)
+```
+
+```{r,echo=FALSE }
+temp<-ifelse(all.equal(assignpayoffMatrix(payoffMatrix,xval),list(list(list(16.90618,32.16689)),list(list(36.39978,24.40948,37.90568,19.4064)),list(list(35.1198,29.21697,41.17856))),tolerance=0.001)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
