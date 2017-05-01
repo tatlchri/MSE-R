@@ -29,26 +29,31 @@ g(header,noM,noU,noD,noAttr,distanceMatrices,matchMatrix,mate)%=%x
 ## header 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(header)
+temp<-ifelse(all.equal(header,c("m" ,"u", "d", "a1", "a2", "a3", "match"))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## noM 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(noM)
+temp<-ifelse(all.equal(noM,3)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## noU 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(noU)
+temp<-ifelse(length(all.equal(noU,list(3,2,4),check.names=FALSE))==3,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## noD 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(noD)
+temp<-ifelse(length(all.equal(noD,list(2,3,4),check.names=FALSE))==3,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## noAttr 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(noAttr)
+temp<-ifelse(all.equal(noAttr,3)==TRUE,print("SUCCESS"),print("TEST FAILED"))
 ```
 
 ## distanceMatrices
@@ -57,14 +62,20 @@ distanceMatrices_temp<-distanceMatrices
 distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ colnames(y)<-c();y}))
 distanceMatrices_temp<-lapply(distanceMatrices_temp,function(x) lapply(x, function(y){ rownames(y)<-c();y}))
 print(distanceMatrices_temp)
+
+temp <- ifelse(all.equal.list(distanceMatrices_temp,list(`1`=list(`1`=data.frame(" "=c("d1111","d1121")," "=c("d1112","d1122")," "=c("d1113","d1123"), check.names = FALSE,stringsAsFactors = FALSE),`2`=data.frame(" "=c("d1211","d1221")," "=c("d1212","d1222")," "=c("d1213","d1223"), check.names = FALSE,stringsAsFactors = FALSE),`3`=data.frame(" "=c("d1311","d1321")," "=c("d1312","d1322")," "=c("d1313","d1323"), check.names = FALSE,stringsAsFactors = FALSE)),`2`=list(`1`=data.frame(" "=c("d2111","d2121","d2131")," "=c("d2112","d2122","d2132")," "=c("d2113","d2123","d2133"), check.names = FALSE,stringsAsFactors = FALSE),`2`=data.frame(" "=c("d2211","d2221","d2231")," "=c("d2212","d2222","d2232")," "=c("d2213","d2223","d2233"), check.names = FALSE,stringsAsFactors = FALSE)),`3`=list(`1`=data.frame(" "=c("d3111","d3121","d3131","d3141")," "=c("d3112","d3122","d3132","d3142")," "=c("d3113","d3123","d3133","d3143"), check.names = FALSE,stringsAsFactors = FALSE),`2`=data.frame(" "=c("d3211","d3221","d3231","d3241")," "=c("d3212","d3222","d3232","d3242")," "=c("d3213","d3223","d3233","d3243"), check.names = FALSE,stringsAsFactors = FALSE),`3`=data.frame(" "=c("d3311","d3321","d3331","d3341")," "=c("d3312","d3322","d3332","d3342")," "=c("d3313","d3323","d3333","d3343"), check.names = FALSE,stringsAsFactors = FALSE),`4`=data.frame(" "=c("d3411","d3421","d3431","d3441")," "=c("d3412","d3422","d3432","d3442")," "=c("d3413","d3423","d3433","d3443"), check.names = FALSE,stringsAsFactors = FALSE))),check.names=FALSE,check.attributes=FALSE)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## matchMatrix
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(matchMatrix)
+temp<- ifelse(all.equal(matchMatrix,list(list(c(0,0),c(0,1),c(1,1)),list(c(0,1,0),c(0,1,0)),list(c(1,1,0,0),c(1,0,1,1),c(1,0,1,0),c(1,1,1,1))))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
 
 ## mate
 ```{r,echo=FALSE,warning=FALSE,message=FALSE }
 print(mate)
+temp<- ifelse(all.equal(mate,list(list(list(c(1,2,3)),list(integer(0),c(2),c(1,2))),list(list(c(1,2)),list(2,2)),list(list(c(1,2,3,4)),list(c(1,2),c(1,3,4),c(1,3),c(1,2,3,4)))))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
+
+
