@@ -38,8 +38,17 @@ par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=
 x<-maximize(par)
 g(bestmem,bestval)%=%x
 print(bestmem)
+
+```
+
+```{r,echo=FALSE}
+temp<-ifelse(all.equal(as.character(bestmem),c("3.83352591911192","2.92996192006047"))==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
+```{r}
 print(bestval)
 ```
 
-
-
+```{r,echo=FALSE}
+temp<-ifelse(all.equal(bestval,29966)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
