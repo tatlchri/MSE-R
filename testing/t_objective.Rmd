@@ -32,6 +32,9 @@ obj<-objective(b)
 print(obj)
 ```
 
+```{r,echo=FALSE}
+temp<-ifelse(all.equal(obj,-72)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
 
 ```{r,warning=FALSE,message=FALSE }
 #Objective function
@@ -41,10 +44,18 @@ obj<-objective(b)
 print(obj)
 ```
 
+```{r,echo=FALSE}
+temp<-ifelse(all.equal(obj,-78)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
+```
+
 ```{r,warning=FALSE,message=FALSE }
 #Objective function
 coefficient1<--1
 b<-c(1,1,1,1) #Define x1,x2,... values
 obj<-objective(b)
 print(obj)
+```
+
+```{r,echo=FALSE}
+temp<-ifelse(all.equal(obj,-73)==TRUE,print("Test Result: SUCCESS"),print("Test Result: TEST FAILED"))
 ```
