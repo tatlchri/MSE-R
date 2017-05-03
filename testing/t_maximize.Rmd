@@ -28,8 +28,7 @@ dataArray<-CdataArray(distanceMatrices,ineqmembers)
 
 #Objective function
 coefficient1<-1
-b<-c(5,3) #Define x1,x2,... values
-obj<-objective(b)
+b<-Cx(noAttr)[2:noAttr]
 
 #maximize function
 lower <- c(-10, -10)
