@@ -71,8 +71,8 @@ RandomSeed  & 0               &  Random Seed to be used for result reproducibili
 ```{r }
 #Objective function
 coefficient1<-1
-b<-c(2,1) #Define x1,x2,... values
-obj<-objective(b)
+b<-Cx #Define x1,x2,... values
+#obj<-objective(b)
 
 #maximize function
 lower <- c(-10, -10)
@@ -85,3 +85,29 @@ print(bestval)
 ```
 
 ## Confidence Intervals
+#Generate random subsample
+```{r }
+#Create groupIDs
+groupIDs<-groupIDs(ineqmembers)
+
+
+ssSize<-3
+
+options<-list()
+options["progressUpdate"]<-1
+options["confidenceLevel"]<-0.95
+options["asymptotics"]<-"nests"
+options["symmetric"]<-FALSE
+
+numSubsamples<-50
+pointEstimate<-as.numeric(bestmem)
+b<-Cx[2:3]
+
+
+lower <- c(-10, -10)
+upper <- -lower
+par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=0.5,F=0.6,RandomSeed=0)
+
+
+pointIdentifiedCR(ssSize, numSubsamples,pointEstimate,Cx,groupIDs,dataArray,options,par)
+```
