@@ -12,9 +12,15 @@ To understand the present code the user needs to be familiar with the maximum sc
 
 2. Extract the downloaded compressed file MSE-R-master.zip
 
-3. Goto examples/ and open any of the examples to experiment with specific cases
+3. Install the libraries: knitr, tinytex
 
-4. Make sure you have set the correct library path at the beginning of your notebooks
+4. Install libxml2-devel in your OS. ie. in Fedora Linux sudo dnf install libxml2-devel
+
+5. For Knit, that is pdf exporting install texlive-titling, texlive-framed in your OS.
+
+6. Goto examples/ and open any of the examples to experiment with specific cases
+
+7. Make sure you have set the correct library path at the beginning of your notebooks
 
 
 ## Documentation
@@ -28,8 +34,6 @@ The code is broken down to several files that are all tied together through the 
 https://github.com/tatlchri/MSE-R/blob/master/doc/functions-reference.docx 
 
 For a more complete
-
-
 
 
 ## Files List
