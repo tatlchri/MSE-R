@@ -4,7 +4,7 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
-knitr::opts_knit$set(root.dir = "C:/Users/Christina/Desktop/mse-r/MSE-R")
+knitr::opts_knit$set(root.dir = "/home/tchronis/Projects/denisa/MSE-R")
 ```
 
 ## init
@@ -12,14 +12,15 @@ Set the library's directory first!
 
 ```{r,warning=FALSE,message=FALSE}
 #Load Libraries and functions
-setwd("C:/Users/Christina/Desktop/mse-r/MSE-R")
+setwd("/home/tchronis/Projects/denisa/MSE-R")
 source("mse.R")
 ```
 
 ## Import precomputed data
 Set the data's directory preferably in the variable 'filename'.
 ```{r }
-filename<-"import/round1m1-1.xls.pre.dat"
+#filename<-"import/round1m1-1.xls.pre.dat"  # 3 attributes
+filename<-"import/precomp_testdata.dat" # 5 attributes
 ```
 Load the data in variables with meaningful names
 ```{r }
@@ -34,7 +35,8 @@ Cx<-Cx(noAttr)
 payoffMatrix<-CpayoffMatrix(noM,noU,noD,Cx,distanceMatrices,noAttr)
 
 #Assign payoffMatrix numerical values (set x's)
-xval<-c(1,2)
+#xval<-c(1,2)  # 3 attributes
+xval<-c(1,2,3,4)  # 5 attributes
 payoffMatrix<-assignpayoffMatrix(payoffMatrix,xval)
 ```
 
@@ -75,7 +77,8 @@ b<-Cx #Define x1,x2,... values
 #obj<-objective(b)
 
 #maximize function
-lower <- c(-10, -10)
+#lower <- c(-10, -10)  # 3 attributes
+lower <- c(-10, -10, -10, -10)  # 5 attributes
 upper <- -lower
 par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=0.5,F=0.6,RandomSeed=0)
 x<-maximize(par)
@@ -91,7 +94,8 @@ print(bestval)
 groupIDs<-groupIDs(ineqmembers)
 
 
-ssSize<-3
+#ssSize<-3  # 3 attributes, markets to select
+ssSize<-2  # 5 attributes, markets to select
 
 options<-list()
 options["progressUpdate"]<-1
@@ -101,10 +105,11 @@ options["symmetric"]<-FALSE
 
 numSubsamples<-50
 pointEstimate<-as.numeric(bestmem)
-b<-Cx[2:3]
+#b<-Cx[2:3]
+b<-Cx[2:5]
 
-
-lower <- c(-10, -10)
+#lower <- c(-10, -10)  # 3 attributes
+lower <- c(-10, -10, -10, -10)  # 5 attributes
 upper <- -lower
 par<-list(lower=lower,upper=upper,NP=50,itermax=100,trace=FALSE,reltol=0.001,CR=0.5,F=0.6,RandomSeed=0)
 
